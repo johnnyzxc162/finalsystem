@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Detailing Booking - Appointment System</title>
+    <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+    <div class="booking-container" style="background: transparent; position: relative; z-index: 2;">
+        <header class="booking-header" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.2); margin: 0 2rem 2rem 2rem;">
+            <h1 style="color: #ff1493; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Schedule Your Car Service Appointment</h1>
+            <p style="color: #ffffff;">Book your services with Vidoltsie Trading with ease</p>
+            <div style="background: rgba(255, 255, 0, 0.1); border: 1px solid #ffeb3b; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <p style="color: #ffeb3b; margin: 0; font-weight: bold;">⚠️ Important Notice:</p>
+                <ul style="color: #ffffff; margin: 0.5rem 0 0 1rem; padding: 0;">
+                    <li>Please ensure all vehicle information is accurate</li>
+                    <li>Service availability may vary - check time slots carefully</li>
+                    <li>Contact number must be valid for appointment confirmation</li>
+                    <li>Bring your vehicle in clean condition for better service</li>
+                </ul>
+            </div>
+        </header>
+
+        <form id="booking-form" class="booking-form">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customer-name">Name *</label>
+                        <input type="text" id="customer-name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Telephone</label>
+                        <input type="tel" id="telephone" placeholder="048-4352325">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile *</label>
+                        <input type="tel" id="mobile" required placeholder="0995-883-3661">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customer-email">Email Address *</label>
+                    <input type="email" id="customer-email" required placeholder="johnlester.robles16@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <input type="text" id="address" required placeholder="Enter your complete address">
+                </div>
+            </div>
+
+            <!-- Vehicle Information -->
+            <div class="form-section">
+                <h2>Vehicle Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-model">Car Model *</label>
+                        <input type="text" id="car-model" required placeholder="e.g., Toyota Camry">
+                    </div>
+                    <div class="form-group">
+                        <label for="car-year">Car Year *</label>
+                        <input type="number" id="car-year" required placeholder="e.g., 2020" min="1900" max="2025">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Services -->
+            <div class="form-section">
+                <h2>Services</h2>
+                <div class="services-grid">
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Change Mags and Tires">
+                        <span class="checkmark"></span>
+                        Change Mags and Tires
+                    </label>
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Alignment">
+                        <span class="checkmark"></span>
+                        Alignment
+                    </label>
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Underchassis Repair">
+                        <span class="checkmark"></span>
+                        Underchassis Repair
+                    </label>
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Selling Mags, Tires & Accessories">
+                        <span class="checkmark"></span>
+                        Selling Mags, Tires & Accessories
+                    </label>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label for="other-services">Other Services (please specify):</label>
+                    <input type="text" id="other-services" placeholder="Type any additional services you need...">
+                </div>
+            </div>
+
+            <!-- Preferred Service Date and Time -->
+            <div class="form-section">
+                <h2>Preferred Service Date and Time</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="service-date">Preferred Date *</label>
+                        <input type="date" id="service-date" required placeholder="mm/dd/yyyy">
+                    </div>
+                    <div class="form-group">
+                        <label for="service-time">Preferred Time *</label>
+                        <select id="service-time" required>
+                            <option value="">Select time</option>
+                            <option value="08:00">8:00 AM</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                            <option value="18:00">6:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label for="custom-time">Or specify your preferred time:</label>
+                    <input type="text" id="custom-time" placeholder="e.g., 9:30 AM, 2:15 PM, etc.">
+                </div>
+            </div>
+
+            <!-- Special Notes -->
+            <div class="form-section">
+                <h2>Special Notes / Request</h2>
+                <div class="form-group">
+                    <label for="special-notes">Additional Information</label>
+                    <textarea id="special-notes" rows="4" placeholder="Any special requests or additional information..."></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Booking Submitted Successfully!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for choosing Vidoltsie Trading. We have received your booking request and will contact you shortly to confirm your appointment.</p>
+                <div class="booking-details" id="booking-summary">
+                    <!-- Booking summary will be populated here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()" class="btn-secondary">Close</button>
+                <button onclick="goHome()" class="btn-primary">Go to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/booking.js"></script>
+</body>
+</html>

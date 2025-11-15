@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Your Car Service Appointment</title>
+    <link rel="stylesheet" href="../css/booking.css">
+</head>
+<body>
+    <div class="booking-container">
+        <header class="booking-header" style="background: transparent; padding: 2rem; margin-bottom: 2rem; border-radius: 10px; margin: 0 2rem 2rem 2rem;">
+            <h1 style="color: #ff1493;">Schedule Your Car Service Appointment</h1>
+            <div class="header-actions">
+                <button class="my-account-btn" onclick="showMyAccount()">My Account</button>
+            </div>
+        </header>
+
+        <form id="booking-form" class="booking-form">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customer-name">Name *</label>
+                        <input type="text" id="customer-name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-number">Contact Number *</label>
+                        <input type="tel" id="contact-number" required placeholder="+63 9XX XXX XXXX">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customer-email">Email Address *</label>
+                        <input type="email" id="customer-email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <input type="text" id="address" required placeholder="Enter your complete address">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Information -->
+            <div class="form-section">
+                <h2>Vehicle Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-model">Car Model *</label>
+                        <input type="text" id="car-model" required placeholder="e.g., Toyota Camry">
+                    </div>
+                    <div class="form-group">
+                        <label for="car-year">Car Year *</label>
+                        <input type="number" id="car-year" required placeholder="e.g., 2020" min="1900" max="2025">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Services -->
+            <div class="form-section">
+                <h2>Services</h2>
+                <div class="services-grid">
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Change Mags and Tires">
+                        <span class="checkmark"></span>
+                        Change Mags and Tires
+                    </label>
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Alignment">
+                        <span class="checkmark"></span>
+                        Alignment
+                    </label>
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Underchassis Repair">
+                        <span class="checkmark"></span>
+                        Underchassis Repair
+                    </label>
+                    <label class="service-checkbox">
+                        <input type="checkbox" name="services" value="Selling Mags, Tires & Accessories">
+                        <span class="checkmark"></span>
+                        Selling Mags, Tires & Accessories
+                    </label>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label for="other-services">Other Services (please specify):</label>
+                    <input type="text" id="other-services" placeholder="Type any additional services you need...">
+                </div>
+            </div>
+
+            <!-- Preferred Service Date and Time -->
+            <div class="form-section">
+                <h2>Preferred Service Date and Time</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="service-date">Preferred Date *</label>
+                        <input type="date" id="service-date" required placeholder="mm/dd/yyyy">
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-time">Preferred Time * (e.g., 10:25 AM, 2:30 PM)</label>
+                        <input type="text" id="custom-time" placeholder="e.g., 10:25 AM, 2:30 PM" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Notes -->
+            <div class="form-section">
+                <div id="booking-notice" style="background: #ffe6e6; border: 2px solid #dc3545; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; font-size: 1.1rem; color: #721c24; font-weight: 600; text-align: center; box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);">
+                    <strong style="font-size: 1.3rem;">⚠️ IMPORTANT NOTICE:</strong><br>
+                    Please ensure all information is accurate. We will contact you to confirm your appointment.
+                </div>
+                <h2>Special Notes / Request</h2>
+                <div class="form-group">
+                    <label for="special-notes">Additional Information</label>
+                    <textarea id="special-notes" rows="4" placeholder="Any special requests or additional information..."></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Booking Submitted Successfully!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for choosing Vidoltsie Trading. We have received your booking request and will contact you shortly to confirm your appointment.</p>
+                <div class="booking-details" id="booking-summary">
+                    <!-- Booking summary will be populated here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()" class="btn-secondary">Close</button>
+                <button onclick="goHome()" class="btn-primary">Go to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Account Modal -->
+    <div id="my-account-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 style="color: #28a745; margin-bottom: 0.5rem; font-size: 2rem;">My Account</h1>
+                <p style="color: #666; font-size: 1.1rem;">Manage your account information</p>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">👤</div>
+                    <h2 style="color: #007bff; margin-bottom: 1rem; font-size: 1.8rem;">Account Information</h2>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; border: 2px solid #007bff;">
+                    <div id="account-details">
+                        <!-- Account details will be populated here -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <strong style="color: #007bff;">Name:</strong><br>
+                                <span id="account-name" style="font-size: 1.1rem;">Loading...</span>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <strong style="color: #007bff;">Email:</strong><br>
+                                <span id="account-email" style="font-size: 1.1rem;">Loading...</span>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <strong style="color: #007bff;">Phone:</strong><br>
+                                <span id="account-phone" style="font-size: 1.1rem;">Not provided</span>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <strong style="color: #007bff;">Account Created:</strong><br>
+                                <span id="account-created" style="font-size: 1.1rem;">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem;">
+                            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                                <button onclick="showEditAccount()" class="btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); padding: 0.75rem 1.5rem; font-size: 1rem; flex: 1; min-width: 140px;">Edit Account</button>
+                                <button onclick="showChangePassword()" class="btn-primary" style="background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%); padding: 0.75rem 1.5rem; font-size: 1rem; flex: 1; min-width: 140px;">Change Password</button>
+                            </div>
+                            <div style="text-align: center;">
+                                <button onclick="goHome()" class="btn-secondary" style="padding: 0.75rem 2rem; font-size: 1rem;">Go to Home</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="account-edit-form" style="display: none;">
+                        <h3 style="text-align: center; color: #007bff; margin-bottom: 2rem; font-size: 1.5rem;">Edit Account Information</h3>
+                        <form id="edit-account-form">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                                <div class="form-group">
+                                    <label for="edit-name" style="color: #007bff; font-weight: 600;">Name:</label>
+                                    <input type="text" id="edit-name" required style="width: 100%; padding: 0.75rem; border: 2px solid #007bff; border-radius: 5px;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-email" style="color: #007bff; font-weight: 600;">Email:</label>
+                                    <input type="email" id="edit-email" required style="width: 100%; padding: 0.75rem; border: 2px solid #007bff; border-radius: 5px;">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 2rem;">
+                                <label for="edit-phone" style="color: #007bff; font-weight: 600;">Phone:</label>
+                                <input type="tel" id="edit-phone" style="width: 100%; padding: 0.75rem; border: 2px solid #007bff; border-radius: 5px;">
+                            </div>
+                            <div style="text-align: center;">
+                                <button type="submit" class="btn-primary" style="background: #28a745; margin-right: 1rem; padding: 0.75rem 2rem;">Save Changes</button>
+                                <button type="button" onclick="cancelEdit()" class="btn-secondary" style="padding: 0.75rem 2rem;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeMyAccountModal()" class="btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="change-password-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 style="color: #333; margin-bottom: 0.5rem; font-size: 2rem;">Change Password</h1>
+                <p style="color: #666; font-size: 1.1rem;">Update your account password</p>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔐</div>
+                    <h2 style="color: #ff1493; margin-bottom: 1rem; font-size: 1.8rem;">Secure Your Account</h2>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; border: 2px solid #ff1493;">
+                    <div id="change-password-message" class="message" style="display: none; margin-bottom: 2rem;"></div>
+                    <form id="change-password-form">
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                            <div class="form-group">
+                                <label for="current-password" style="color: #ff1493; font-weight: 600; display: block; margin-bottom: 0.5rem;">Current Password:</label>
+                                <input type="password" id="current-password" required style="width: 100%; padding: 0.75rem; border: 2px solid #ff1493; border-radius: 5px; font-size: 1rem;">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password" style="color: #ff1493; font-weight: 600; display: block; margin-bottom: 0.5rem;">New Password:</label>
+                                <input type="password" id="new-password" required minlength="6" style="width: 100%; padding: 0.75rem; border: 2px solid #ff1493; border-radius: 5px; font-size: 1rem;">
+                                <small style="color: #666; font-size: 0.9rem; margin-top: 0.25rem; display: block;">Minimum 6 characters</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password" style="color: #ff1493; font-weight: 600; display: block; margin-bottom: 0.5rem;">Confirm New Password:</label>
+                                <input type="password" id="confirm-password" required minlength="6" style="width: 100%; padding: 0.75rem; border: 2px solid #ff1493; border-radius: 5px; font-size: 1rem;">
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%); padding: 0.75rem 2rem; font-size: 1rem; border: none; border-radius: 5px; color: white; cursor: pointer; font-weight: 600;">Change Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeChangePasswordModal()" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/booking.js"></script>
+</body>
+</html>

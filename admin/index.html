@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Appointment System</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Panel</h1>
+            <div class="user-info">
+                <span id="user-name"></span>
+                <button id="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <nav class="admin-nav">
+            <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+            <button class="nav-btn" data-section="status">Business Status</button>
+            <button class="nav-btn" data-section="appointments">Appointments</button>
+            <button class="nav-btn" data-section="calendar">Calendar</button>
+            <button class="nav-btn" data-section="users">Users</button>
+            <button class="nav-btn" data-section="services">Services</button>
+        </nav>
+
+        <main class="admin-main">
+            <section id="dashboard-section" class="section active">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Appointments</h3>
+                        <div class="stat-number" id="total-appointments">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Appointments</h3>
+                        <div class="stat-number" id="pending-appointments">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <div class="stat-number" id="total-users">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Services</h3>
+                        <div class="stat-number" id="total-services">0</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="status-section" class="section">
+                <h2>Business Status Control</h2>
+                <div class="status-control-panel">
+                    <div class="current-status-display">
+                        <h3>Current Status</h3>
+                        <div class="status-display">
+                            <div class="status-light-large" id="admin-status-light"></div>
+                            <div class="status-info">
+                                <h4 id="admin-status-title">Loading...</h4>
+                                <p id="admin-status-message">Checking business status...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="status-controls">
+                        <h3>Manual Status Control</h3>
+                        <p>Override automatic status (useful for holidays or special events)</p>
+                        <div class="control-buttons">
+                            <button id="force-open-btn" class="btn-success-large">
+                                Force Open
+                            </button>
+                            <button id="force-closed-btn" class="btn-danger-large">
+                                Force Closed
+                            </button>
+                            <button id="reset-status-btn" class="btn-secondary-large">
+                                Reset to Auto
+                            </button>
+                        </div>
+                        <div class="status-note">
+                            <small>Note: Manual status overrides will be reset when the page is refreshed or when automatic status changes occur.</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="appointments-section" class="section">
+                <h2>Appointments Management</h2>
+                <div class="data-table">
+                    <table id="appointments-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User ID</th>
+                                <th>Customer</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Notes</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointments-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="calendar-section" class="section">
+                <h2>Calendar View</h2>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prev-month" class="btn-secondary">← Previous</button>
+                        <h3 id="calendar-title"></h3>
+                        <div class="calendar-controls">
+                            <button id="next-month" class="btn-secondary">Next →</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">Sun</div>
+                        <div class="calendar-day-header">Mon</div>
+                        <div class="calendar-day-header">Tue</div>
+                        <div class="calendar-day-header">Wed</div>
+                        <div class="calendar-day-header">Thu</div>
+                        <div class="calendar-day-header">Fri</div>
+                        <div class="calendar-day-header">Sat</div>
+                        <div id="calendar-days" class="calendar-days">
+                            <!-- Calendar days will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <div class="legend-color available"></div>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color booked"></div>
+                        <span>Booked</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color unavailable"></div>
+                        <span>Unavailable</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="users-section" class="section">
+                <h2>Users Management</h2>
+                <div class="section-controls">
+                    <button id="refresh-users" class="btn-primary">Refresh</button>
+                </div>
+                <div class="data-table">
+                    <table id="users-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="services-section" class="section">
+                <h2>Services Management</h2>
+                <div class="section-controls">
+                    <button id="add-service-btn" class="btn-primary">Add Service</button>
+                </div>
+                <div class="data-table">
+                    <table id="services-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="services-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="service-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="service-modal-title">Add Service</h3>
+            <form id="service-form">
+                <input type="hidden" id="service-id">
+                <div class="form-group">
+                    <label for="service-name">Name:</label>
+                    <input type="text" id="service-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="service-description">Description:</label>
+                    <textarea id="service-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="service-duration">Duration (minutes):</label>
+                    <input type="number" id="service-duration" required>
+                </div>
+                <div class="form-group">
+                    <label for="service-price">Price:</label>
+                    <input type="number" id="service-price" step="0.01">
+                </div>
+                <button type="submit" class="btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Appointment Details Modal -->
+    <div id="appointment-details-modal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+        <div class="modal-content" style="background-color: #fefefe; margin: 5% auto; padding: 0; border: 1px solid #888; width: 90%; max-width: 800px; border-radius: 10px; max-height: 90vh; overflow-y: auto;">
+            <span class="close" onclick="closeAppointmentDetailsModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; margin: 10px; cursor: pointer;">&times;</span>
+            <h3 style="padding: 20px 20px 0 20px; margin: 0;">Appointment Details</h3>
+            <div id="appointment-details-content" style="padding: 20px;">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Calendar Zoom View -->
+    <div id="calendar-zoom" class="calendar-zoom-container">
+        <div class="calendar-zoom-content">
+            <button class="zoom-close-btn" onclick="closeCalendarZoom()">&times;</button>
+            <div class="zoom-date-header">
+                <h3 id="zoom-date-title">Date Details</h3>
+                <p id="zoom-date-status">Status</p>
+            </div>
+            <div class="zoom-times-grid" id="zoom-times-grid">
+                <!-- Time slots will be populated here -->
+            </div>
+            <div class="zoom-notes-section">
+                <h4>Date Notes</h4>
+                <textarea id="zoom-notes-textarea" placeholder="Add notes for this date..." rows="3"></textarea>
+                <button class="zoom-save-btn" onclick="saveZoomNotes()">Save Notes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login - Appointment System</title>
+    <link rel="stylesheet" href="../css/customer-login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Customer Portal</h1>
+            <p>Login to book and manage your appointments</p>
+        </div>
+
+        <div class="auth-tabs">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="register">Register</button>
+        </div>
+
+        <div id="login-tab" class="tab-content active">
+            <form id="customer-login-form">
+                <div class="form-group">
+                    <label for="customer-email">Email:</label>
+                    <input type="email" id="customer-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="customer-password">Password:</label>
+                    <input type="password" id="customer-password" required placeholder="Enter your password" minlength="6">
+                </div>
+                <div class="form-group">
+                    <a href="#" id="forgot-password-link" class="forgot-password-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+        </div>
+
+        <div id="register-tab" class="tab-content">
+            <form id="customer-register-form">
+                <div class="form-group">
+                    <label for="register-name">Full Name:</label>
+                    <input type="text" id="register-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Phone (optional):</label>
+                    <input type="tel" id="register-phone" placeholder="+1 234 567 8900">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" required minlength="6" placeholder="Minimum 6 characters">
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password:</label>
+                    <input type="password" id="register-confirm-password" required minlength="6" placeholder="Confirm your password">
+                </div>
+                <button type="submit" class="btn-login">Register</button>
+            </form>
+        </div>
+
+        <div class="login-footer">
+            <p><a href="../index.html">← Back to Main Page</a></p>
+        </div>
+    </div>
+
+    <script src="../js/customer-login.js"></script>
+</body>
+</html>

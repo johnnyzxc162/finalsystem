@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Appointment System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="welcome-fullscreen">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Welcome to Vidoltsie Trading</h1>
+                <p>Booking Appointment</p>
+                <div class="hero-buttons">
+                    <a href="customer/login.html" class="btn-primary-large">Customer Login</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Section -->
+        <section class="status-section">
+            <div class="status-container">
+                <div class="status-tabs">
+                    <button class="tab-btn active" data-tab="status">Status & Hours</button>
+                    <button class="tab-btn" data-tab="services">Our Services</button>
+                </div>
+                <div class="tab-content active" id="status">
+                    <div class="status-indicator">
+                        <div class="status-light" id="status-light"></div>
+                        <div class="status-text">
+                            <h3 id="status-title">We're Open</h3>
+                            <p id="status-message">Ready to serve you with our professional detailing services</p>
+                            <div class="business-hours">
+                                <h4>Business Hours</h4>
+                                <div class="hours-list">
+                                    <div class="hour-item">
+                                        <span>Monday - Saturday</span>
+                                        <span>8:00 AM - 5:00 PM</span>
+                                    </div>
+                                    <div class="hour-item">
+                                        <span>Sunday</span>
+                                        <span>8:00 AM - 3:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="services">
+                    <div class="services-content">
+                        <h2>Our Services</h2>
+                        <div class="services-grid" id="services-grid">
+                            <!-- Services will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Contact Us</h4>
+                        <p>📞 048-4352325</p>
+                        <p>📱 0995-883-3661</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Locations</h4>
+                        <p>📍 Blk 2 Lot 14 Molino Rd., Molino 3 Bacoor Cavite</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Us</h4>
+                        <p><img src="fbicon.png" alt="Facebook" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 0.5rem;"> Vidoltsie Trading</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="admin-link">
+                        <a href="admin/login.html">Admin Access</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/welcome.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[build]
+  # This tells Netlify what command to run to build your site.
+  # We don't have a build command, so this can be empty or a simple command.
+  command = "echo 'No build command'"
+  # This tells Netlify where your built site is.
+  publish = "."
+
+[functions]
+  # This specifies that we want to use a special builder for PHP.
+  included_files = ["vendor/**", "config/**", "classes/**"]
+
+[functions."api/*"]
+  # This uses a community runtime to compile PHP into a Netlify Function.
+  runtime = "bref"

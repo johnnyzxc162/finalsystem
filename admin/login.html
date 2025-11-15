@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Appointment System</title>
+    <link rel="stylesheet" href="../css/admin-login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Admin Login</h1>
+            <p>Access the administration panel</p>
+        </div>
+
+        <div class="login-form-container">
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-email">Email:</label>
+                    <input type="email" id="admin-email" required placeholder="admin@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password:</label>
+                    <input type="password" id="admin-password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn-login">Login as Admin</button>
+            </form>
+        </div>
+
+        <div class="login-footer">
+            <p><a href="../index.html">← Back to Main Page</a></p>
+            <p><a href="../customer/login.html">Customer Login</a></p>
+        </div>
+    </div>
+
+    <script src="../js/admin-login.js"></script>
+</body>
+</html>
