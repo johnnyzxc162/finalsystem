@@ -2,8 +2,7 @@
 [build]
   # This command tells Netlify to run your setup.php script during deployment.
   # This script should connect to your database and create the necessary tables.
-  command = "php setup.php"
-
+command = "php -d extension=pdo_pgsql setup.php"
   # This tells Netlify that the files for your live site are in the root directory.
   publish = "."
 
