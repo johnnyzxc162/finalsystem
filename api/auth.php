@@ -9,7 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-require_once '../classes/User.php';
+// --- START OF FIX ---
+// Define a ROOT_PATH constant that points to the project's root directory.
+// __DIR__ is the directory of the current file (api), so '../' goes up one level.
+define('ROOT_PATH', realpath(__DIR__ . '/..'));
+
+// Now use this ROOT_PATH to include your file.
+require_once ROOT_PATH . '/classes/User.php';
+// --- END OF FIX ---
+
 
 $user = new User();
 

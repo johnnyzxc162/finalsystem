@@ -1,5 +1,14 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+// --- START OF FIX ---
+// Check if the ROOT_PATH constant is already defined before defining it.
+// This prevents errors if another file has already defined it.
+if (!defined('ROOT_PATH')) {
+    // __DIR__ is the directory of the current file ('classes'), 
+    // so '../' goes up one level to the project root.
+    define('ROOT_PATH', realpath(__DIR__ . '/..'));
+}
+require_once ROOT_PATH . '/config/database.php';
+// --- END OF FIX ---
 
 class User {
     private $conn;
