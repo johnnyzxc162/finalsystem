@@ -1,14 +1,19 @@
+# This is the main build configuration for your site.
 [build]
-  # This tells Netlify what command to run to build your site.
-  # We don't have a build command, so this can be empty or a simple command.
-  command = "echo 'No build command'"
-  # This tells Netlify where your built site is.
+  # This command tells Netlify to run your setup.php script during deployment.
+  # This script should connect to your database and create the necessary tables.
+  command = "php setup.php"
+
+  # This tells Netlify that the files for your live site are in the root directory.
   publish = "."
 
+# This section configures your serverless functions (your PHP API).
 [functions]
-  # This specifies that we want to use a special builder for PHP.
-  included_files = ["vendor/**", "config/**", "classes/**"]
+  # This is a critical setting. It tells Netlify to include these folders 
+  # so your PHP functions can access the database connection and class files.
+  included_files = ["vendor/**", "config/**", "classes/**", "db/**"]
 
+# This section applies a specific configuration to all files inside your 'api/' folder.
 [functions."api/*"]
-  # This uses a community runtime to compile PHP into a Netlify Function.
+  # This tells Netlify to use the 'bref' community runtime, which knows how to execute PHP.
   runtime = "bref"
